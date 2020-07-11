@@ -37,6 +37,20 @@ class Cell {
         return possibleSymbols_;
     }
 
+    void subtractFromPossibles(List<Cell> others) {
+        List<Symbol> removeList = new ArrayList<>();
+        for (Cell cell : others) {
+            if (cell.getSymbol() != null) {
+                removeList.add(cell.getSymbol());
+            }
+        }
+        possibleSymbols_.removeAll(removeList);
+        if (possibleSymbols_.size() == 1) {
+            symbol_ = possibleSymbols_.get(0);
+            possibleSymbols_ = null;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

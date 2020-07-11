@@ -8,8 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SudokuGridTest {
-    private static int GRID_WIDTH = 9;
-    private static int GRID_HEIGHT = 9;
     private static List<Cell> ROW_ZERO = Arrays.asList(new Cell(0), new Cell(0), new Cell(0), new Cell(2), new Cell(6), new Cell(0), new Cell(7), new Cell(0), new Cell(1));
     private static List<Cell> COL_EIGHT = Arrays.asList(new Cell(1), new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(8), new Cell(4), new Cell(6), new Cell(0));
     private static List<Cell> GROUP_A = Arrays.asList(new Cell(0), new Cell(0), new Cell(0), new Cell(6), new Cell(8), new Cell(0), new Cell(1), new Cell(9), new Cell(0));
@@ -38,6 +36,11 @@ public class SudokuGridTest {
                 {7,0,3,0,1,8,0,0,0}
         };
         sudokuGrid_ = new SudokuGrid(grid);
+    }
+
+    @Test
+    public void testIsSolved() {
+        Assert.assertTrue("Sudoku Grid is NOT Solved", !sudokuGrid_.isSolved());
     }
 
     @Test
