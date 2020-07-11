@@ -5,6 +5,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author nevillebradshaw@hotmail.com
+ * <p>
+ * A Cell is a container for a symbol in the Sudoku Grid.
+ * E.G. the number 1 to 9.
+ * A Cell that is currently not resolved has symbol == null.
+ * When the symbol is null the possibleSymbols_ list contains the potenial values.
+ * This list starts with all the available nine symbols.
+ * This list is reduced with each iteration of the Solver until only a single value remains.
+ * At this point the symbol_ is set to this value and the list of possibleValues_ is set to null.
+ * At this point the Cell is resolved.
+ */
 class Cell {
     private static List<Symbol> ALL_SYMBOLS = new ArrayList<>(Arrays.asList(Symbol.values()));
     private Symbol symbol_;
@@ -13,7 +25,7 @@ class Cell {
     Cell(int value) {
         symbol_ = switch (value) {
             case 0 -> {
-                possibleSymbols_ = ALL_SYMBOLS;
+                possibleSymbols_ = new ArrayList<>(ALL_SYMBOLS);
                 yield null;
             }
             case 1 -> Symbol.ONE;
@@ -37,17 +49,19 @@ class Cell {
         return possibleSymbols_;
     }
 
-    void subtractFromPossibles(List<Cell> others) {
-        List<Symbol> removeList = new ArrayList<>();
-        for (Cell cell : others) {
-            if (cell.getSymbol() != null) {
-                removeList.add(cell.getSymbol());
+    void removeFromPossibleSymbols(List<Cell> otherCellsList) {
+        if (symbol_ == null) {
+            List<Symbol> removeList = new ArrayList<>();
+            for (Cell cell : otherCellsList) {
+                if (cell.getSymbol() != null) {
+                    removeList.add(cell.getSymbol());
+                }
             }
-        }
-        possibleSymbols_.removeAll(removeList);
-        if (possibleSymbols_.size() == 1) {
-            symbol_ = possibleSymbols_.get(0);
-            possibleSymbols_ = null;
+            possibleSymbols_.removeAll(removeList);
+            if (possibleSymbols_.size() == 1) {
+                symbol_ = possibleSymbols_.get(0);
+                possibleSymbols_ = null;
+            }
         }
     }
 
@@ -56,8 +70,7 @@ class Cell {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
-        return symbol_ == cell.symbol_ &&
-                Objects.equals(possibleSymbols_, cell.possibleSymbols_);
+        return symbol_ == cell.symbol_ && Objects.equals(possibleSymbols_, cell.possibleSymbols_);
     }
 
     @Override

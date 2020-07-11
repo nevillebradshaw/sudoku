@@ -4,6 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author nevillebradshaw@hotmail.com
+ *
+ * This represents the Groid of Cells
+ * provides methods to indicate if the Grid has been reloved
+ * as well as the helper methods to List the nine values in a row,column or 3x3 group.
+ * There are 9 groups in the grid which I refer to as GroupA, GroupB...GroupI
+ * These are the 3x3 arrays listed from top left of the grid to bottom right
+ */
 class SudokuGrid {
     public static int GRID_WIDTH = 9;
     public static int GRID_HEIGHT = 9;
@@ -14,7 +23,6 @@ class SudokuGrid {
         for (int i = 0; i < GRID_WIDTH; i++) {
             for (int j = 0; j < GRID_HEIGHT; j++) {
                 cellGrid_[i][j] = new Cell(grid[i][j]);
-//                System.out.println(cellGrid[i][j]);
             }
         }
     }
@@ -37,7 +45,7 @@ class SudokuGrid {
     }
 
     List<Cell> getRow(int i) {
-        return Arrays.asList(cellGrid_[i]);
+        return new ArrayList<>(Arrays.asList(cellGrid_[i]));
     }
 
     List<Cell> getCol(int j) {
@@ -45,7 +53,7 @@ class SudokuGrid {
         for (int i = 0; i < GRID_HEIGHT; i++) {
             col[i] = cellGrid_[i][j];
         }
-        return Arrays.asList(col);
+        return new ArrayList<>(Arrays.asList(col));
     }
 
     List<Cell> getGroup(int row, int col) {
@@ -124,5 +132,4 @@ class SudokuGrid {
         }
         return groupCells;
     }
-
 }
