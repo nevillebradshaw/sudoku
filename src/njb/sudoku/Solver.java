@@ -5,12 +5,11 @@ package njb.sudoku;
  *
  * This Solver attempts to find the Sudoku solution to the grid passed in to the constructor.
  * This solver iterates through each Cell in the Grid each of which keeps a tally of the possible values
- * the cell may have based on the actual resolved values in the current row, column and local group.
+ * the cell may have based on the actual resolved values in the current row, column and group.
  * (the 3 x 3 array the current Cell resides in)
  * If a solution is not found within MAX_ITERATIONS attempts the solver simply prints out a message
  * to that effect.
- * If a solution is found it is pretty printed to the console
- * At present this solver doesn't validate the grid before attempting to solve it.
+ * If a solution is found it is pretty printed to the console.
  *
  */
 public class Solver {

@@ -12,10 +12,9 @@ import java.util.Objects;
  * E.G. the number 1 to 9.
  * A Cell that is currently not resolved has symbol == null.
  * When the symbol is null the possibleSymbols_ list contains the potenial values.
- * This list starts with all the available nine symbols.
+ * This list starts with all available nine symbols.
  * This list is reduced with each iteration of the Solver until only a single value remains.
- * At this point the symbol_ is set to this value and the list of possibleValues_ is set to null.
- * At this point the Cell is resolved.
+ * At this point the symbol_ is set to this value and the list of possibleValues_ is set to null
  */
 class Cell {
     private static List<Symbol> ALL_SYMBOLS = new ArrayList<>(Arrays.asList(Symbol.values()));

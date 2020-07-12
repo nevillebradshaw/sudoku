@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * @author nevillebradshaw@hotmail.com
  *
- * This represents the Groid of Cells
- * provides methods to indicate if the Grid has been reloved
+ * This class represents the Grid of Cells
+ * It provides methods to indicate if the Grid has been resolved
  * as well as the helper methods to List the nine values in a row,column or 3x3 group.
- * There are 9 groups in the grid which I refer to as GroupA, GroupB...GroupI
- * These are the 3x3 arrays listed from top left of the grid to bottom right
+ * There are 9 3x3 groups in the grid which I refer to as GroupA, GroupB...GroupI
+ * These are the 3x3 arrays listed from top left of the grid to bottom right.
  */
 class SudokuGrid {
     public static int GRID_WIDTH = 9;
