@@ -26,6 +26,7 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        Solver solver = new Solver(GRID2);
+        Solver solver = new Solver(GRID);
+        solver = new Solver(GRID2);
     }
 }
