@@ -1,7 +1,7 @@
 package njb.sudoku;
 
 public class Main {
-    static final int[][] GRID = new int[][] {
+    static final int[][] EASY_GRID_1 = new int[][] {
             {0, 0, 0, 2, 6, 0, 7, 0, 1},
             {6, 8, 0, 0, 7, 0, 0, 9, 0},
             {1, 9, 0, 0, 0, 4, 5, 0, 0},
@@ -13,7 +13,7 @@ public class Main {
             {7, 0, 3, 0, 1, 8, 0, 0, 0}
     };
 
-    static final int[][] GRID2 = new int[][] {
+    static final int[][] EASY_GRID_2 = new int[][] {
             {0, 0, 0, 0, 7, 2, 0, 0, 0},
             {6, 0, 0, 0, 3, 0, 0, 0, 0},
             {0, 2, 7, 5, 0, 9, 6, 1, 0},
@@ -25,8 +25,31 @@ public class Main {
             {0, 1, 8, 0, 9, 6, 0, 4, 5}
     };
 
+    static final int[][] HARD_GRID_1 = new int[][] {
+            {0, 3, 8, 0, 0, 0, 4, 0, 0},
+            {2, 0, 0, 0, 0, 5, 0, 0, 0},
+            {0, 0, 0, 0, 7, 0, 0, 0, 0},
+            {0, 0, 4, 0, 0, 0, 6, 0, 2},
+            {0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {0, 6, 0, 8, 0, 0, 0, 4, 0},
+            {0, 8, 0, 4, 0, 6, 1, 0, 0},
+            {0, 7, 5, 0, 0, 0, 0, 9, 0},
+            {0, 0, 6, 0, 5, 0, 0, 8, 0}
+    };
+
+    static final int[][] HARD_GRID_2 = new int[][] {
+            {0, 3, 8, 0, 0, 0, 4, 0, 0},
+            {2, 0, 0, 0, 0, 5, 0, 0, 0},
+            {0, 0, 0, 0, 7, 0, 0, 0, 0},
+            {0, 0, 4, 0, 0, 0, 6, 0, 2},
+            {0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {0, 6, 0, 8, 0, 0, 0, 4, 0},
+            {0, 8, 0, 4, 0, 6, 1, 0, 0},
+            {0, 7, 5, 0, 0, 0, 0, 9, 0},
+            {0, 0, 6, 0, 5, 0, 0, 8, 0}
+    };
+
     public static void main(String[] args) {
-        Solver solver = new Solver(GRID);
-        solver = new Solver(GRID2);
+        Solver solver = new Solver(EASY_GRID_1);
     }
 }

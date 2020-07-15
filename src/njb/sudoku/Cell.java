@@ -48,7 +48,8 @@ class Cell {
         return possibleSymbols_;
     }
 
-    void removeFromPossibleSymbols(List<Cell> otherCellsList) {
+    boolean removeFromPossibleSymbols(List<Cell> otherCellsList) {
+        boolean cellChanged = false;
         if (symbol_ == null) {
             List<Symbol> removeList = new ArrayList<>();
             for (Cell cell : otherCellsList) {
@@ -56,12 +57,13 @@ class Cell {
                     removeList.add(cell.getSymbol());
                 }
             }
-            possibleSymbols_.removeAll(removeList);
+            cellChanged = possibleSymbols_.removeAll(removeList);
             if (possibleSymbols_.size() == 1) {
                 symbol_ = possibleSymbols_.get(0);
                 possibleSymbols_ = null;
             }
         }
+        return cellChanged;
     }
 
     @Override

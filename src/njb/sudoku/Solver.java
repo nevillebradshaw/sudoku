@@ -26,18 +26,27 @@ public class Solver {
         SudokuGrid sudokuGrid_ = new SudokuGrid(grid);
         int numIterations = 0;
         while (!sudokuGrid_.isSolved() && numIterations++ < MAX_ITERATIONS) {
+            boolean gridChangedInThisIteration = false;
             for (int i = 0; i < SudokuGrid.GRID_WIDTH; i++) {
                 for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
+                    //Easy Grids
                     Cell currentCell = sudokuGrid_.getCellGrid()[i][j];
-                    currentCell.removeFromPossibleSymbols(sudokuGrid_.getRow(i));
-                    currentCell.removeFromPossibleSymbols(sudokuGrid_.getCol(j));
-                    currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroup(i, j));
+                    boolean rowChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getRow(i));
+                    boolean colChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getCol(j));
+                    boolean groupChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroup(i, j));
+                    if (rowChanged || colChanged || groupChanged) {
+                        gridChangedInThisIteration = true;
+                    }
                 }
+            }
+            if (!gridChangedInThisIteration) {
+                // Hard Grids
+//                System.out.println("Hard Grid");
             }
         }
 
         if (sudokuGrid_.isSolved()) {
-            System.out.println("Solution");
+            System.out.println("Solution found in " + numIterations + " iterations");
             System.out.println("-----------------");
             for (int i = 0; i < SudokuGrid.GRID_WIDTH; i++) {
                 for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
