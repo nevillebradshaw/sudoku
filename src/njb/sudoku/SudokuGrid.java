@@ -1,8 +1,6 @@
 package njb.sudoku;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author nevillebradshaw@hotmail.com
@@ -27,6 +25,45 @@ class SudokuGrid {
         }
     }
 
+    boolean isValid() {
+        boolean isVal = true;
+        for (int i = 0; i < GRID_WIDTH; i++) {
+            List<Cell> rowList = getSolvedRowCells(i);
+            Set<Cell> celLSet = new HashSet<>(rowList);
+            if (rowList.size() != celLSet.size()) {
+                isVal = false;
+                break;
+            }
+        }
+
+        if (isVal) {
+            for (int j = 0; j < GRID_WIDTH; j++) {
+                List<Cell> colList = getSolvedColCells(j);
+                Set<Cell> celLSet = new HashSet<>(colList);
+                if (colList.size() != celLSet.size()) {
+                    isVal = false;
+                    break;
+                }
+            }
+        }
+
+        if (isVal) {
+            for (int i = 0; i < GRID_WIDTH; i++) {
+                for (int j = 0; j < GRID_HEIGHT; j++) {
+                    List<Cell> groupList = getSolvedGroupCells(i, j);
+                    //TODO only get each group once
+                    Set<Cell> celLSet = new HashSet<>(groupList);
+                    if (groupList.size() != celLSet.size()) {
+                        isVal = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return isVal;
+    }
+
     boolean isSolved() {
         boolean solved = true;
         for (int i = 0; i < GRID_WIDTH; i++) {
@@ -44,11 +81,15 @@ class SudokuGrid {
         return cellGrid_;
     }
 
-    List<Cell> getRow(int i) {
+    List<Cell> getRowCells(int i) {
         return new ArrayList<>(Arrays.asList(cellGrid_[i]));
     }
 
-    List<Cell> getCol(int j) {
+    private List<Cell> getSolvedRowCells(int i) {
+        return getSolvedCells(getRowCells(i));
+    }
+
+    List<Cell> getColCells(int j) {
         Cell[] col = new Cell[GRID_HEIGHT];
         for (int i = 0; i < GRID_HEIGHT; i++) {
             col[i] = cellGrid_[i][j];
@@ -56,45 +97,63 @@ class SudokuGrid {
         return new ArrayList<>(Arrays.asList(col));
     }
 
-    List<Cell> getGroup(int row, int col) {
-        List<Cell> groupCells = new ArrayList<>();
+    private List<Cell> getSolvedColCells(int j) {
+        return getSolvedCells(getColCells(j));
+    }
+
+    List<Cell> getGroupCells(int row, int col) {
+        List<Cell> groupCellsList = new ArrayList<>();
         // Group A
         if (row >= 0 && row <= 2 && col >= 0 && col <= 2) {
-            groupCells = getGroup(0, 2, 0, 2);
+            groupCellsList = getGroup(0, 2, 0, 2);
         }
         // Group B
         else if (row >= 0 && row <= 2 && col >= 3 && col <= 5) {
-            groupCells = getGroup(0, 2, 3, 5);
+            groupCellsList = getGroup(0, 2, 3, 5);
         }
         // Group C
         else if (row >= 0 && row <= 2 && col >= 6 && col <= 8) {
-            groupCells = getGroup(0, 2, 6, 8);
+            groupCellsList = getGroup(0, 2, 6, 8);
         }
         // Group D
         else if (row >= 3 && row <= 5 && col >= 0 && col <= 2) {
-            groupCells = getGroup(3, 5, 0, 2);
+            groupCellsList = getGroup(3, 5, 0, 2);
         }
         // Group E
         else if (row >= 3 && row <= 5 && col >= 3 && col <= 5) {
-            groupCells = getGroup(3, 5, 3, 5);
+            groupCellsList = getGroup(3, 5, 3, 5);
         }
         // Group F
         else if (row >= 3 && row <= 5 && col >= 6 && col <= 8) {
-            groupCells = getGroup(3, 5, 6, 8);
+            groupCellsList = getGroup(3, 5, 6, 8);
         }
         // Group G
         else if (row >= 6 && row <= 8 && col >= 0 && col <= 2) {
-            groupCells = getGroup(6, 8, 0, 2);
+            groupCellsList = getGroup(6, 8, 0, 2);
         }
         // Group H
         else if (row >= 6 && row <= 8 && col >= 3 && col <= 5) {
-            groupCells = getGroup(6, 8, 3, 5);
+            groupCellsList = getGroup(6, 8, 3, 5);
         }
         // Group I
         else if (row >= 6 && row <= 8 && col >= 6 && col <= 8) {
-            groupCells = getGroup(6, 8, 6, 8);
+            groupCellsList = getGroup(6, 8, 6, 8);
         }
-        return groupCells;
+        return groupCellsList;
+    }
+
+    private List<Cell> getSolvedGroupCells(int i, int j) {
+        return getSolvedCells(getGroupCells(i, j));
+    }
+
+    private List<Cell> getSolvedCells(List<Cell> allCells) {
+        List<Cell> solvedCells = new ArrayList<>();
+        for (Cell cell : allCells) {
+            if (cell.getSymbol() != null) {
+                solvedCells.add(cell);
+            }
+        }
+        return solvedCells;
     }
 
     private List<Cell> getGroup(int rowMin, int rowMax, int colMin, int colMax) {

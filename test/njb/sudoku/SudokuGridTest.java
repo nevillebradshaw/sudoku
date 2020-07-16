@@ -40,216 +40,216 @@ public class SudokuGridTest {
 
     @Test
     public void testIsSolved() {
-        Assert.assertTrue("Sudoku Grid is NOT Solved", !sudokuGrid_.isSolved());
+        Assert.assertFalse("Sudoku Grid is NOT Solved", sudokuGrid_.isSolved());
     }
 
     @Test
     public void testGetRow() {
-        List<Cell> testRow = sudokuGrid_.getRow(0);
+        List<Cell> testRow = sudokuGrid_.getRowCells(0);
         Assert.assertEquals("incorrect row", testRow, ROW_ZERO);
     }
 
     @Test
     public void testGetCol() {
-        List<Cell> testCol = sudokuGrid_.getCol(8);
+        List<Cell> testCol = sudokuGrid_.getColCells(8);
         Assert.assertEquals("incorrect col", testCol, COL_EIGHT);
     }
 
     @Test
     public void testGetGroupA() {
-        List<Cell> groupA = sudokuGrid_.getGroup(0, 0);
+        List<Cell> groupA = sudokuGrid_.getGroupCells(0, 0);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(0, 1);
+        groupA = sudokuGrid_.getGroupCells(0, 1);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(0, 2);
+        groupA = sudokuGrid_.getGroupCells(0, 2);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(1, 0);
+        groupA = sudokuGrid_.getGroupCells(1, 0);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(1, 1);
+        groupA = sudokuGrid_.getGroupCells(1, 1);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(1, 2);
+        groupA = sudokuGrid_.getGroupCells(1, 2);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(2, 0);
+        groupA = sudokuGrid_.getGroupCells(2, 0);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(2, 1);
+        groupA = sudokuGrid_.getGroupCells(2, 1);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
-        groupA = sudokuGrid_.getGroup(2, 2);
+        groupA = sudokuGrid_.getGroupCells(2, 2);
         Assert.assertEquals("incorrect group A", groupA, GROUP_A);
     }
 
     @Test
     public void testGetGroupB() {
-        List<Cell> groupB = sudokuGrid_.getGroup(0, 3);
+        List<Cell> groupB = sudokuGrid_.getGroupCells(0, 3);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(0, 4);
+        groupB = sudokuGrid_.getGroupCells(0, 4);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(0, 5);
+        groupB = sudokuGrid_.getGroupCells(0, 5);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(1, 3);
+        groupB = sudokuGrid_.getGroupCells(1, 3);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(1, 4);
+        groupB = sudokuGrid_.getGroupCells(1, 4);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(1, 5);
+        groupB = sudokuGrid_.getGroupCells(1, 5);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(2, 3);
+        groupB = sudokuGrid_.getGroupCells(2, 3);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(2, 4);
+        groupB = sudokuGrid_.getGroupCells(2, 4);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
-        groupB = sudokuGrid_.getGroup(2, 5);
+        groupB = sudokuGrid_.getGroupCells(2, 5);
         Assert.assertEquals("incorrect group B", groupB, GROUP_B);
     }
 
     @Test
     public void testGetGroupC() {
-        List<Cell> groupC = sudokuGrid_.getGroup(0, 6);
+        List<Cell> groupC = sudokuGrid_.getGroupCells(0, 6);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(0, 7);
+        groupC = sudokuGrid_.getGroupCells(0, 7);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(0, 8);
+        groupC = sudokuGrid_.getGroupCells(0, 8);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(1, 6);
+        groupC = sudokuGrid_.getGroupCells(1, 6);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(1, 7);
+        groupC = sudokuGrid_.getGroupCells(1, 7);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(1, 8);
+        groupC = sudokuGrid_.getGroupCells(1, 8);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(2, 6);
+        groupC = sudokuGrid_.getGroupCells(2, 6);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(2, 7);
+        groupC = sudokuGrid_.getGroupCells(2, 7);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
-        groupC = sudokuGrid_.getGroup(2, 8);
+        groupC = sudokuGrid_.getGroupCells(2, 8);
         Assert.assertEquals("incorrect group C", groupC, GROUP_C);
     }
 
     @Test
     public void testGetGroupD() {
-        List<Cell> groupD = sudokuGrid_.getGroup(3, 0);
+        List<Cell> groupD = sudokuGrid_.getGroupCells(3, 0);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(3, 1);
+        groupD = sudokuGrid_.getGroupCells(3, 1);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(3, 2);
+        groupD = sudokuGrid_.getGroupCells(3, 2);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(4, 0);
+        groupD = sudokuGrid_.getGroupCells(4, 0);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(4, 1);
+        groupD = sudokuGrid_.getGroupCells(4, 1);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(4, 2);
+        groupD = sudokuGrid_.getGroupCells(4, 2);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(5, 0);
+        groupD = sudokuGrid_.getGroupCells(5, 0);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(5, 1);
+        groupD = sudokuGrid_.getGroupCells(5, 1);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
-        groupD = sudokuGrid_.getGroup(5, 2);
+        groupD = sudokuGrid_.getGroupCells(5, 2);
         Assert.assertEquals("incorrect group D", groupD, GROUP_D);
     }
 
     @Test
     public void testGetGroupE() {
-        List<Cell> groupE = sudokuGrid_.getGroup(3, 3);
+        List<Cell> groupE = sudokuGrid_.getGroupCells(3, 3);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(3, 4);
+        groupE = sudokuGrid_.getGroupCells(3, 4);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(3, 5);
+        groupE = sudokuGrid_.getGroupCells(3, 5);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(4, 3);
+        groupE = sudokuGrid_.getGroupCells(4, 3);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(4, 4);
+        groupE = sudokuGrid_.getGroupCells(4, 4);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(4, 5);
+        groupE = sudokuGrid_.getGroupCells(4, 5);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(5, 3);
+        groupE = sudokuGrid_.getGroupCells(5, 3);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(5, 4);
+        groupE = sudokuGrid_.getGroupCells(5, 4);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
-        groupE = sudokuGrid_.getGroup(5, 5);
+        groupE = sudokuGrid_.getGroupCells(5, 5);
         Assert.assertEquals("incorrect group E", groupE, GROUP_E);
     }
 
     @Test
     public void testGetGroupF() {
-        List<Cell> groupF = sudokuGrid_.getGroup(3, 6);
+        List<Cell> groupF = sudokuGrid_.getGroupCells(3, 6);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(3, 7);
+        groupF = sudokuGrid_.getGroupCells(3, 7);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(3, 8);
+        groupF = sudokuGrid_.getGroupCells(3, 8);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(4, 6);
+        groupF = sudokuGrid_.getGroupCells(4, 6);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(4, 7);
+        groupF = sudokuGrid_.getGroupCells(4, 7);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(4, 8);
+        groupF = sudokuGrid_.getGroupCells(4, 8);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(5, 6);
+        groupF = sudokuGrid_.getGroupCells(5, 6);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(5, 7);
+        groupF = sudokuGrid_.getGroupCells(5, 7);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
-        groupF = sudokuGrid_.getGroup(5, 8);
+        groupF = sudokuGrid_.getGroupCells(5, 8);
         Assert.assertEquals("incorrect group F", groupF, GROUP_F);
     }
 
     @Test
     public void testGetGroupG() {
-        List<Cell> groupG= sudokuGrid_.getGroup(6, 0);
+        List<Cell> groupG= sudokuGrid_.getGroupCells(6, 0);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(6, 1);
+        groupG = sudokuGrid_.getGroupCells(6, 1);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(6, 2);
+        groupG = sudokuGrid_.getGroupCells(6, 2);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(7, 0);
+        groupG = sudokuGrid_.getGroupCells(7, 0);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(7, 1);
+        groupG = sudokuGrid_.getGroupCells(7, 1);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(7, 2);
+        groupG = sudokuGrid_.getGroupCells(7, 2);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(8, 0);
+        groupG = sudokuGrid_.getGroupCells(8, 0);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(8, 1);
+        groupG = sudokuGrid_.getGroupCells(8, 1);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
-        groupG = sudokuGrid_.getGroup(8, 2);
+        groupG = sudokuGrid_.getGroupCells(8, 2);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
     }
 
     @Test
     public void testGetGroupH() {
-        List<Cell> groupH= sudokuGrid_.getGroup(6, 3);
+        List<Cell> groupH= sudokuGrid_.getGroupCells(6, 3);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(6, 4);
+        groupH = sudokuGrid_.getGroupCells(6, 4);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(6, 5);
+        groupH = sudokuGrid_.getGroupCells(6, 5);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(7, 3);
+        groupH = sudokuGrid_.getGroupCells(7, 3);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(7, 4);
+        groupH = sudokuGrid_.getGroupCells(7, 4);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(7, 5);
+        groupH = sudokuGrid_.getGroupCells(7, 5);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(8, 3);
+        groupH = sudokuGrid_.getGroupCells(8, 3);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(8, 4);
+        groupH = sudokuGrid_.getGroupCells(8, 4);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
-        groupH = sudokuGrid_.getGroup(8, 5);
+        groupH = sudokuGrid_.getGroupCells(8, 5);
         Assert.assertEquals("incorrect group G", groupH, GROUP_H);
     }
 
     @Test
     public void testGetGroupI() {
-        List<Cell> groupI= sudokuGrid_.getGroup(6, 6);
+        List<Cell> groupI= sudokuGrid_.getGroupCells(6, 6);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(6, 7);
+        groupI = sudokuGrid_.getGroupCells(6, 7);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(6, 8);
+        groupI = sudokuGrid_.getGroupCells(6, 8);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(7, 6);
+        groupI = sudokuGrid_.getGroupCells(7, 6);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(7, 7);
+        groupI = sudokuGrid_.getGroupCells(7, 7);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(7, 8);
+        groupI = sudokuGrid_.getGroupCells(7, 8);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(8, 6);
+        groupI = sudokuGrid_.getGroupCells(8, 6);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(8, 7);
+        groupI = sudokuGrid_.getGroupCells(8, 7);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
-        groupI = sudokuGrid_.getGroup(8, 8);
+        groupI = sudokuGrid_.getGroupCells(8, 8);
         Assert.assertEquals("incorrect group G", groupI, GROUP_I);
     }
 }

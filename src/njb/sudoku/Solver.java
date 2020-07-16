@@ -31,9 +31,9 @@ public class Solver {
                 for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
                     //Easy Grids
                     Cell currentCell = sudokuGrid_.getCellGrid()[i][j];
-                    boolean rowChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getRow(i));
-                    boolean colChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getCol(j));
-                    boolean groupChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroup(i, j));
+                    boolean rowChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getRowCells(i));
+                    boolean colChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getColCells(j));
+                    boolean groupChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroupCells(i, j));
                     if (rowChanged || colChanged || groupChanged) {
                         gridChangedInThisIteration = true;
                     }
@@ -41,7 +41,7 @@ public class Solver {
             }
             if (!gridChangedInThisIteration) {
                 // Hard Grids
-//                System.out.println("Hard Grid");
+                sudokuGrid_ = solve(sudokuGrid_);
             }
         }
 
@@ -61,6 +61,65 @@ public class Solver {
         else {
             System.out.println("Unable to find a solution for this grid in " + numIterations + " iterations.");
         }
+    }
+
+    SudokuGrid solve(SudokuGrid sudokuGrid) {
+        if (sudokuGrid.isSolved()) {
+            return sudokuGrid;
+        }
+        else {
+            int nextUnresolvedCellRowIndex = 0;
+            int nextUnresolvedCellColIndex = 0;
+
+            loop : for (int i = 0; i < SudokuGrid.GRID_WIDTH; i++) {
+                for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
+                    Cell currentCell = sudokuGrid.getCellGrid()[i][j];
+                    if (currentCell.getSymbol() == null) {
+                        nextUnresolvedCellRowIndex = i;
+                        nextUnresolvedCellColIndex = j;
+                        break loop;
+                    }
+                }
+            }
+
+            Symbol trySymbol = Symbol.ONE;
+            sudokuGrid.getCellGrid()[nextUnresolvedCellRowIndex][nextUnresolvedCellColIndex] = new Cell(trySymbol);
+            while (!sudokuGrid.isValid() && trySymbol != Symbol.NINE) {
+                if (trySymbol == Symbol.ONE) {
+                    trySymbol = Symbol.TWO;
+                }
+                else if (trySymbol == Symbol.TWO) {
+                    trySymbol = Symbol.THREE;
+                }
+                else if (trySymbol == Symbol.THREE) {
+                    trySymbol = Symbol.FOUR;
+                }
+                else if (trySymbol == Symbol.FOUR) {
+                    trySymbol = Symbol.FIVE;
+                }
+                else if (trySymbol == Symbol.FIVE) {
+                    trySymbol = Symbol.SIX;
+                }
+                else if (trySymbol == Symbol.SIX) {
+                    trySymbol = Symbol.SEVEN;
+                }
+                else if (trySymbol == Symbol.SEVEN) {
+                    trySymbol = Symbol.EIGHT;
+                }
+                else {
+                    trySymbol = Symbol.NINE;
+                }
+
+                sudokuGrid.getCellGrid()[nextUnresolvedCellRowIndex][nextUnresolvedCellColIndex] = new Cell(trySymbol);
+            }
+            if (sudokuGrid.isValid()) {
+                solve(sudokuGrid);
+            }
+            else {
+                return sudokuGrid;
+            }
+        }
+        return sudokuGrid;
     }
 
     public int[][] getSolution() {

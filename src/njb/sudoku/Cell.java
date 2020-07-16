@@ -16,10 +16,15 @@ import java.util.Objects;
  * This list is reduced with each iteration of the Solver until only a single value remains.
  * At this point the symbol_ is set to this value and the list of possibleValues_ is set to null
  */
-class Cell {
+class Cell implements Comparable<Cell>{
     private static List<Symbol> ALL_SYMBOLS = new ArrayList<>(Arrays.asList(Symbol.values()));
     private Symbol symbol_;
     private List<Symbol> possibleSymbols_;
+
+    Cell(Symbol symbol) {
+        symbol_ = symbol;
+        possibleSymbols_ = null;
+    }
 
     Cell(int value) {
         symbol_ = switch (value) {
@@ -82,5 +87,19 @@ class Cell {
     @Override
     public String toString() {
         return "Cell{symbol_=" + symbol_ + ", possibleSymbols_=" + possibleSymbols_ + '}';
+    }
+
+    @Override
+    public int compareTo(Cell otherCell) {
+        int thisVal = symbol_.getValue();
+        int thatVal = otherCell.getSymbol().getValue();
+        int ret = 1;
+        if (thisVal < thatVal) {
+            ret = -1;
+        }
+        else if (thisVal == thatVal) {
+            ret = 0;
+        }
+        return ret;
     }
 }
