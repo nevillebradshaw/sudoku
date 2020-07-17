@@ -21,10 +21,13 @@ public class SudokuGridTest {
     private static List<Cell> GROUP_I = Arrays.asList(new Cell(0), new Cell(7), new Cell(4), new Cell(0), new Cell(3), new Cell(6), new Cell(0), new Cell(0), new Cell(0));
 
     private SudokuGrid sudokuGrid_;
+    private SudokuGrid invalidSudokuGridRow_;
+    private SudokuGrid invalidSudokuGridCol_;
+    private SudokuGrid invalidSudokuGridGroup_;
 
     @Before
     public void init() {
-        int[][] grid = {
+        int[][] validGrid = {
                 {0,0,0,2,6,0,7,0,1},
                 {6,8,0,0,7,0,0,9,0},
                 {1,9,0,0,0,4,5,0,0},
@@ -35,12 +38,71 @@ public class SudokuGridTest {
                 {0,4,0,0,5,0,0,3,6},
                 {7,0,3,0,1,8,0,0,0}
         };
-        sudokuGrid_ = new SudokuGrid(grid);
+        sudokuGrid_ = new SudokuGrid(validGrid);
+
+        int[][] invalidGridRow = {
+                {0,0,2,2,6,0,7,0,1},
+                {6,8,0,0,7,0,0,9,0},
+                {1,9,0,0,0,4,5,0,0},
+                {8,2,0,1,0,0,0,4,0},
+                {0,0,4,6,0,2,9,0,0},
+                {0,5,0,0,0,3,0,2,8},
+                {0,0,9,3,0,0,0,7,4},
+                {0,4,0,0,5,0,0,3,6},
+                {7,0,3,0,1,8,0,0,0}
+        };
+        invalidSudokuGridRow_ = new SudokuGrid(invalidGridRow);
+
+        int[][] invalidGridCol = {
+                {0,0,0,2,6,0,7,0,1},
+                {6,8,0,0,7,0,0,9,0},
+                {1,9,0,0,0,4,5,0,0},
+                {8,2,0,1,0,0,0,4,0},
+                {0,0,4,6,0,2,9,0,0},
+                {0,5,0,0,0,3,0,2,8},
+                {8,0,9,3,0,0,0,7,4},
+                {0,4,0,0,5,0,0,3,6},
+                {7,0,3,0,1,8,0,0,0}
+        };
+        invalidSudokuGridCol_ = new SudokuGrid(invalidGridCol);
+
+        int[][] invalidGridGroup = {
+                {0,0,0,2,6,0,7,0,1},
+                {6,8,0,0,7,0,0,9,0},
+                {1,9,0,0,0,4,5,0,0},
+                {8,2,0,1,0,0,0,4,0},
+                {0,0,4,6,0,2,9,0,0},
+                {0,5,0,0,0,3,0,2,8},
+                {0,0,9,3,0,0,6,7,4},
+                {0,4,0,0,5,0,0,3,6},
+                {7,0,3,0,1,8,0,0,0}
+        };
+        invalidSudokuGridGroup_ = new SudokuGrid(invalidGridGroup);
     }
 
     @Test
     public void testIsSolved() {
         Assert.assertFalse("Sudoku Grid is NOT Solved", sudokuGrid_.isSolved());
+    }
+
+    @Test
+    public void gridIsValid() {
+        Assert.assertTrue("Sudoku Grid is NOT Valid", sudokuGrid_.isValid());
+    }
+
+    @Test
+    public void gridIsNotValidRow() {
+        Assert.assertFalse("Sudoku Row Grid is Valid", invalidSudokuGridRow_.isValid());
+    }
+
+    @Test
+    public void gridIsNotValidCol() {
+        Assert.assertFalse("Sudoku Col Grid is Valid", invalidSudokuGridCol_.isValid());
+    }
+
+    @Test
+    public void gridIsNotValidGroup() {
+        Assert.assertFalse("Sudoku Group Grid is Valid", invalidSudokuGridGroup_.isValid());
     }
 
     @Test

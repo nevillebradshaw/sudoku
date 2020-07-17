@@ -38,6 +38,6 @@ public class Main {
     };
 
     public static void main(String[] args) {
-        Solver solver = new Solver(HARD_GRID_1);
+        Solver solver = new Solver(EASY_GRID_1);
     }
 }

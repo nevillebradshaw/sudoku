@@ -3,12 +3,19 @@ package njb.sudoku;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class CellTest {
     private static List<Symbol> ALL_SYMBOLS = new ArrayList<>(Arrays.asList(Symbol.values()));
+    private static List<Cell> ALL_CELLS = Arrays.asList(new Cell(1), new Cell(2), new Cell(3), new Cell(4), new Cell(5), new Cell(6), new Cell(7), new Cell(8), new Cell(9));
+    private static List<Cell> RANDOM_CELLS = Arrays.asList(new Cell(8), new Cell(2), new Cell(3), new Cell(6), new Cell(1), new Cell(4), new Cell(7), new Cell(9), new Cell(5));
+
+    @Test
+    public void checkCellComparator() {
+        List<Cell> randomCells = new ArrayList<>(RANDOM_CELLS);
+        Collections.sort(randomCells);
+        Assert.assertTrue("Comparator incorrect", Objects.deepEquals(randomCells, ALL_CELLS));
+    }
 
     @Test
     public void checkCellCorrectEmptyValue() {

@@ -92,7 +92,7 @@ class Cell implements Comparable<Cell>{
     @Override
     public int compareTo(Cell otherCell) {
         int thisVal = symbol_.getValue();
-        int thatVal = otherCell.getSymbol().getValue();
+        int thatVal = otherCell.getSymbol() == null ? 0 : otherCell.getSymbol().getValue();
         int ret = 1;
         if (thisVal < thatVal) {
             ret = -1;

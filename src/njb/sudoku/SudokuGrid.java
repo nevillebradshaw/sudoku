@@ -29,18 +29,16 @@ class SudokuGrid {
         boolean isVal = true;
         for (int i = 0; i < GRID_WIDTH; i++) {
             List<Cell> rowList = getSolvedRowCells(i);
-            Set<Cell> celLSet = new HashSet<>(rowList);
-            if (rowList.size() != celLSet.size()) {
+            if (!isCellListValid(rowList)) {
                 isVal = false;
                 break;
             }
         }
 
         if (isVal) {
-            for (int j = 0; j < GRID_WIDTH; j++) {
+            for (int j = 0; j < GRID_HEIGHT; j++) {
                 List<Cell> colList = getSolvedColCells(j);
-                Set<Cell> celLSet = new HashSet<>(colList);
-                if (colList.size() != celLSet.size()) {
+                if (!isCellListValid(colList)) {
                     isVal = false;
                     break;
                 }
@@ -48,12 +46,11 @@ class SudokuGrid {
         }
 
         if (isVal) {
+            //TODO only get each group once
             for (int i = 0; i < GRID_WIDTH; i++) {
                 for (int j = 0; j < GRID_HEIGHT; j++) {
                     List<Cell> groupList = getSolvedGroupCells(i, j);
-                    //TODO only get each group once
-                    Set<Cell> celLSet = new HashSet<>(groupList);
-                    if (groupList.size() != celLSet.size()) {
+                    if (!isCellListValid(groupList)) {
                         isVal = false;
                         break;
                     }
@@ -62,6 +59,15 @@ class SudokuGrid {
         }
 
         return isVal;
+    }
+
+    private boolean isCellListValid(List<Cell> cellList) {
+        boolean valid = true;
+        Set<Cell> cellSet = new HashSet<>(cellList);
+        if (cellList.size() != cellSet.size()) {
+            valid = false;
+        }
+        return valid;
     }
 
     boolean isSolved() {
