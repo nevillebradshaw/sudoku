@@ -16,6 +16,26 @@ public class Solver {
     private static int MAX_ITERATIONS = 20;
     private int[][] solution = new int[SudokuGrid.GRID_WIDTH][SudokuGrid.GRID_HEIGHT];
 
+    private class BooleanLatch {
+        private boolean value_;
+        private boolean isValueChanged_;
+
+        public BooleanLatch(boolean value) {
+            value_ = value;
+        }
+
+        public boolean isValue() {
+            return value_;
+        }
+
+        public void setValue(boolean value) {
+            if (!isValueChanged_) {
+                isValueChanged_ = true;
+                value_ = value;
+            }
+        }
+    }
+
     /**
      *
      * @param grid  A 9x9 integer array specifying the sudoku grid.
@@ -31,10 +51,11 @@ public class Solver {
                 for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
                     //Easy Grids
                     Cell currentCell = sudokuGrid_.getCellGrid()[i][j];
-                    boolean rowChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getRowCells(i));
-                    boolean colChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getColCells(j));
-                    boolean groupChanged = currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroupCells(i, j));
-                    if (rowChanged || colChanged || groupChanged) {
+                    BooleanLatch cellChanged = new BooleanLatch(false);
+                    cellChanged.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getRowCells(i)));
+                    cellChanged.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getColCells(j)));
+                    cellChanged.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroupCells(i, j)));
+                    if (cellChanged.isValue()) {
                         gridChangedInThisIteration = true;
                     }
                 }
