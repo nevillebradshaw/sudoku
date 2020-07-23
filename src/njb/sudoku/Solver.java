@@ -16,6 +16,9 @@ public class Solver {
     private static int MAX_ITERATIONS = 20;
     private int[][] solution = new int[SudokuGrid.GRID_WIDTH][SudokuGrid.GRID_HEIGHT];
 
+    /**
+     * A boolean value which may be changed once and once only.
+     */
     private class BooleanLatch {
         private boolean value_;
         private boolean isValueChanged_;
