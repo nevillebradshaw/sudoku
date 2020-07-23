@@ -46,21 +46,17 @@ public class Solver {
         SudokuGrid sudokuGrid_ = new SudokuGrid(grid);
         int numIterations = 0;
         while (!sudokuGrid_.isSolved() && numIterations++ < MAX_ITERATIONS) {
-            boolean gridChangedInThisIteration = false;
+            BooleanLatch gridChangedInThisIteration = new BooleanLatch(false);
             for (int i = 0; i < SudokuGrid.GRID_WIDTH; i++) {
                 for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
                     //Easy Grids
                     Cell currentCell = sudokuGrid_.getCellGrid()[i][j];
-                    BooleanLatch cellChanged = new BooleanLatch(false);
-                    cellChanged.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getRowCells(i)));
-                    cellChanged.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getColCells(j)));
-                    cellChanged.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroupCells(i, j)));
-                    if (cellChanged.isValue()) {
-                        gridChangedInThisIteration = true;
-                    }
+                    gridChangedInThisIteration.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getRowCells(i)));
+                    gridChangedInThisIteration.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getColCells(j)));
+                    gridChangedInThisIteration.setValue(currentCell.removeFromPossibleSymbols(sudokuGrid_.getGroupCells(i, j)));
                 }
             }
-            if (!gridChangedInThisIteration) {
+            if (!gridChangedInThisIteration.isValue()) {
                 break;
             }
         }
