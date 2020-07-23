@@ -148,6 +148,16 @@ class SudokuGrid {
         return groupCellsList;
     }
 
+    private List<Cell> getGroup(int rowMin, int rowMax, int colMin, int colMax) {
+        List<Cell> groupCells = new ArrayList<>();
+        for (int i = rowMin; i <= rowMax; i++) {
+            for (int j = colMin; j <= colMax; j++) {
+                groupCells.add(cellGrid_[i][j]);
+            }
+        }
+        return groupCells;
+    }
+
     private List<Cell> getSolvedGroupCells(int i, int j) {
         return getSolvedCells(getGroupCells(i, j));
     }
@@ -160,15 +170,5 @@ class SudokuGrid {
             }
         }
         return solvedCells;
-    }
-
-    private List<Cell> getGroup(int rowMin, int rowMax, int colMin, int colMax) {
-        List<Cell> groupCells = new ArrayList<>();
-        for (int i = rowMin; i <= rowMax; i++) {
-            for (int j = colMin; j <= colMax; j++) {
-                groupCells.add(cellGrid_[i][j]);
-            }
-        }
-        return groupCells;
     }
 }
