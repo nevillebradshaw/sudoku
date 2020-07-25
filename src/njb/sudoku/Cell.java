@@ -21,6 +21,11 @@ class Cell implements Comparable<Cell>{
     private Symbol symbol_;
     private List<Symbol> possibleSymbols_;
 
+    Cell() {
+        symbol_ = null;
+        possibleSymbols_ = new ArrayList<>(ALL_SYMBOLS);
+    }
+
     Cell(Symbol symbol) {
         symbol_ = symbol;
         possibleSymbols_ = null;

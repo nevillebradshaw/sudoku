@@ -37,7 +37,19 @@ public class Main {
             {0, 0, 6, 0, 5, 0, 0, 8, 0}
     };
 
+    static final int[][] HARD_GRID_2 = new int[][] {
+            {2, 0, 0, 5, 0, 1, 0, 0, 8},
+            {0, 8, 0, 0, 6, 0, 0, 9, 0},
+            {0, 0, 0, 8, 0, 2, 0, 0, 0},
+            {0, 2, 0, 0, 0, 0, 0, 3, 0},
+            {5, 0, 1, 0, 2, 0, 4, 0, 9},
+            {0, 9, 0, 0, 0, 0, 0, 2, 0},
+            {0, 0, 0, 1, 0, 6, 0, 0, 0},
+            {0, 6, 0, 0, 4, 0, 0, 7, 0},
+            {8, 0, 0, 9, 0, 5, 0, 0, 6}
+    };
+
     public static void main(String[] args) {
-        Solver solver = new Solver(EASY_GRID_1);
+        Solver solver = new Solver(HARD_GRID_2);
     }
 }
