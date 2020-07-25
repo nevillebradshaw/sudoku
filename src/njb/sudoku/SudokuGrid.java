@@ -14,10 +14,6 @@ class SudokuGrid {
     public static int GRID_WIDTH = 9;
     public static int GRID_HEIGHT = 9;
 
-    private enum CellStatus {
-        SOLVED, UNSOLVED
-    }
-
     private Cell[][] cellGrid_ = new Cell[GRID_WIDTH][GRID_HEIGHT];
 
     SudokuGrid(int[][] grid) {
@@ -95,7 +91,7 @@ class SudokuGrid {
     }
 
     private List<Cell> getSolvedRowCells(int i) {
-        return getSubset(getRowCells(i), CellStatus.SOLVED);
+        return getSolvedCells(getRowCells(i));
     }
 
     List<Cell> getColCells(int j) {
@@ -107,7 +103,7 @@ class SudokuGrid {
     }
 
     private List<Cell> getSolvedColCells(int j) {
-        return getSubset(getColCells(j), CellStatus.SOLVED);
+        return getSolvedCells(getColCells(j));
     }
 
     List<Cell> getGroupCells(int row, int col) {
@@ -162,15 +158,13 @@ class SudokuGrid {
     }
 
     private List<Cell> getSolvedGroupCells(int i, int j) {
-        return getSubset(getGroupCells(i, j), CellStatus.SOLVED);
+        return getSolvedCells(getGroupCells(i, j));
     }
 
-    private List<Cell> getSubset(List<Cell> allCells, CellStatus cellStatus) {
+    private List<Cell> getSolvedCells(List<Cell> allCells) {
         List<Cell> cellList = new ArrayList<>();
         for (Cell cell : allCells) {
-            if (cellStatus == CellStatus.SOLVED && cell.getSymbol() != null) {
-                cellList.add(cell);
-            } else if (cellStatus == CellStatus.UNSOLVED && cell.getSymbol() == null) {
+            if (cell.getSymbol() != null) {
                 cellList.add(cell);
             }
         }
