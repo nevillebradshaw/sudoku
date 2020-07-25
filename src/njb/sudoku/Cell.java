@@ -35,8 +35,12 @@ class Cell implements Comparable<Cell> {
         };
     }
 
-    Symbol getSymbol() {
-        return symbol_;
+    int getValue() {
+        return symbol_.getValue();
+    }
+
+    boolean isCellEmpty() {
+        return symbol_ == null;
     }
 
     @Override
@@ -54,13 +58,13 @@ class Cell implements Comparable<Cell> {
 
     @Override
     public String toString() {
-        return "Cell{symbol_=" + symbol_ + '}';
+        return symbol_.toString();
     }
 
     @Override
     public int compareTo(Cell otherCell) {
         int thisVal = symbol_.getValue();
-        int thatVal = otherCell.getSymbol() == null ? 0 : otherCell.getSymbol().getValue();
+        int thatVal = otherCell.symbol_ == null ? 0 : otherCell.symbol_.getValue();
         int ret = 1;
         if (thisVal < thatVal) {
             ret = -1;

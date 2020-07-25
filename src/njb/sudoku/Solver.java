@@ -3,7 +3,7 @@ package njb.sudoku;
 /**
  * @author nevillebradshaw@hotmail.com
  * <p>
- * This Solver attempts to find the Sudoku solution to the grid passed in to the constructor.
+ * This Solver attempts to find the solution to the Sudoku grid passed in to the constructor.
  */
 public class Solver {
     private SudokuGrid sudokuGrid_;
@@ -16,6 +16,7 @@ public class Solver {
      */
     public Solver(int[][] grid) {
         sudokuGrid_ = new SudokuGrid(grid);
+
         solve();
 
         if (sudokuGrid_.isSolved()) {
@@ -23,9 +24,9 @@ public class Solver {
             System.out.println("-----------------");
             for (int i = 0; i < SudokuGrid.GRID_SIZE; i++) {
                 for (int j = 0; j < SudokuGrid.GRID_SIZE; j++) {
-                    Cell currentCell = sudokuGrid_.getCellGrid()[i][j];
-                    solution[i][j] = currentCell.getSymbol().getValue();
-                    System.out.print(currentCell.getSymbol() + " ");
+                    Cell currentCell = sudokuGrid_.getCell(i, j);
+                    solution[i][j] = currentCell.getValue();
+                    System.out.print(currentCell + " ");
                 }
                 System.out.println(" ");
             }
@@ -38,22 +39,21 @@ public class Solver {
     boolean solve() {
         for (int i = 0; i < SudokuGrid.GRID_SIZE; i++) {
             for (int j = 0; j < SudokuGrid.GRID_SIZE; j++) {
-                if (sudokuGrid_.getCellGrid()[i][j].getSymbol() == null) {
+                if (sudokuGrid_.getCell(i, j).isCellEmpty()) {
                     for (Symbol symbol : Symbol.values()) {
-                        sudokuGrid_.getCellGrid()[i][j] = new Cell(symbol);
-                        if (sudokuGrid_.isValid()) {
+                        sudokuGrid_.setCell(i, j, new Cell(symbol));
+                        if (!sudokuGrid_.isValid(i, j)) {
+                            sudokuGrid_.setCell(i, j, new Cell());
+                        } else {
                             if (solve()) {
                                 return true;
                             } else {
-                                sudokuGrid_.getCellGrid()[i][j] = new Cell();
+                                sudokuGrid_.setCell(i, j, new Cell());
                             }
-                        } else {
-                            sudokuGrid_.getCellGrid()[i][j] = new Cell();
                         }
                     }
                     return false;
                 }
-
             }
         }
         return true;

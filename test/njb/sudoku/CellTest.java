@@ -17,22 +17,28 @@ public class CellTest {
     }
 
     @Test
-    public void checkCellCorrectEmptyValue() {
+    public void checkCellCorrectEmptyValueZero() {
         Cell cell = new Cell(0);
-        Assert.assertNull("cell initialised with 0 should have a null Symbol", cell.getSymbol());
+        Assert.assertTrue("cell initialised with 0 should be empty", cell.isCellEmpty());
+    }
+
+    @Test
+    public void checkCellCorrectEmptyValue() {
+        Cell cell = new Cell();
+        Assert.assertTrue("cell initialised with default constructor should be empty", cell.isCellEmpty());
     }
 
     @Test
     public void checkCellCorrectNonEmptyValues() {
-        Assert.assertSame("cell initialised with 1 should have Symbol == ONE", new Cell(1).getSymbol(), Symbol.ONE);
-        Assert.assertSame("cell initialised with 2 should have Symbol == TWO", new Cell(2).getSymbol(), Symbol.TWO);
-        Assert.assertSame("cell initialised with 3 should have Symbol == THREE", new Cell(3).getSymbol(), Symbol.THREE);
-        Assert.assertSame("cell initialised with 4 should have Symbol == FOUR", new Cell(4).getSymbol(), Symbol.FOUR);
-        Assert.assertSame("cell initialised with 5 should have Symbol == FIVE", new Cell(5).getSymbol(), Symbol.FIVE);
-        Assert.assertSame("cell initialised with 6 should have Symbol == SIX", new Cell(6).getSymbol(), Symbol.SIX);
-        Assert.assertSame("cell initialised with 7 should have Symbol == SEVEN", new Cell(7).getSymbol(), Symbol.SEVEN);
-        Assert.assertSame("cell initialised with 8 should have Symbol == EIGHT", new Cell(8).getSymbol(), Symbol.EIGHT);
-        Assert.assertSame("cell initialised with 9 should have Symbol == NINE", new Cell(9).getSymbol(), Symbol.NINE);
+        Assert.assertSame("cell initialised with 1 should have Symbol ONE   Value", new Cell(1).getValue(), Symbol.ONE.getValue());
+        Assert.assertSame("cell initialised with 2 should have Symbol TWO   Value", new Cell(2).getValue(), Symbol.TWO.getValue());
+        Assert.assertSame("cell initialised with 3 should have Symbol THREE Value", new Cell(3).getValue(), Symbol.THREE.getValue());
+        Assert.assertSame("cell initialised with 4 should have Symbol FOUR  Value", new Cell(4).getValue(), Symbol.FOUR.getValue());
+        Assert.assertSame("cell initialised with 5 should have Symbol FIVE  Value", new Cell(5).getValue(), Symbol.FIVE.getValue());
+        Assert.assertSame("cell initialised with 6 should have Symbol SIX   Value", new Cell(6).getValue(), Symbol.SIX.getValue());
+        Assert.assertSame("cell initialised with 7 should have Symbol SEVEN Value", new Cell(7).getValue(), Symbol.SEVEN.getValue());
+        Assert.assertSame("cell initialised with 8 should have Symbol EIGHT Value", new Cell(8).getValue(), Symbol.EIGHT.getValue());
+        Assert.assertSame("cell initialised with 9 should have Symbol NINE  Value", new Cell(9).getValue(), Symbol.NINE.getValue());
     }
 
     @Test(expected = RuntimeException.class)

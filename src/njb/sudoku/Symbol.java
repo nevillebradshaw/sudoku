@@ -15,7 +15,7 @@ enum Symbol {
         value_ = value;
     }
 
-    public int getValue() {
+    int getValue() {
         return value_;
     }
 

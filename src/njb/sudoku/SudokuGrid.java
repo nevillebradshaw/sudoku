@@ -6,8 +6,8 @@ import java.util.*;
  * @author nevillebradshaw@hotmail.com
  * <p>
  * This class represents the Grid of Cells
- * It provides methods to indicate if the Grid has been solved and if it isValid
- * i.e. current cell values conform to the rules of sudoku.
+ * It provides methods to indicate if the Grid has been solved and if it is valid
+ * i.e. that the current cell values conform to the rules of sudoku.
  */
 class SudokuGrid {
     static int GRID_SIZE = 9;
@@ -17,16 +17,43 @@ class SudokuGrid {
     SudokuGrid(int[][] grid) {
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
-                cellGrid_[i][j] = new Cell(grid[i][j]);
+                setCell(i, j, new Cell(grid[i][j]));
             }
         }
+    }
+
+    Cell getCell(int i, int j) {
+        return cellGrid_[i][j];
+    }
+
+    void setCell(int i, int j, Cell cell) {
+        cellGrid_[i][j] = cell;
+    }
+
+    boolean isValid(int i, int j) {
+        boolean isVal = true;
+        if (!isCellListValid(getSolvedRowCells(i))) {
+            isVal = false;
+        }
+
+        if (isVal) {
+            if (!isCellListValid(getSolvedColCells(j))) {
+                isVal = false;
+            }
+        }
+
+        if (isVal) {
+            if (!isCellListValid(getSolvedGroupCells(i, j))) {
+                isVal = false;
+            }
+        }
+        return isVal;
     }
 
     boolean isValid() {
         boolean isVal = true;
         for (int i = 0; i < GRID_SIZE; i++) {
-            List<Cell> rowList = getSolvedRowCells(i);
-            if (!isCellListValid(rowList)) {
+            if (!isCellListValid(getSolvedRowCells(i))) {
                 isVal = false;
                 break;
             }
@@ -34,8 +61,7 @@ class SudokuGrid {
 
         if (isVal) {
             for (int j = 0; j < GRID_SIZE; j++) {
-                List<Cell> colList = getSolvedColCells(j);
-                if (!isCellListValid(colList)) {
+                if (!isCellListValid(getSolvedColCells(j))) {
                     isVal = false;
                     break;
                 }
@@ -46,8 +72,7 @@ class SudokuGrid {
             int[] idx = {0, 3, 6};
             for (int i : idx) {
                 for (int j : idx) {
-                    List<Cell> groupList = getSolvedGroupCells(i, j);
-                    if (!isCellListValid(groupList)) {
+                    if (!isCellListValid(getSolvedGroupCells(i, j))) {
                         isVal = false;
                         break;
                     }
@@ -59,29 +84,20 @@ class SudokuGrid {
     }
 
     private boolean isCellListValid(List<Cell> cellList) {
-        boolean valid = true;
-        Set<Cell> cellSet = new HashSet<>(cellList);
-        if (cellList.size() != cellSet.size()) {
-            valid = false;
-        }
-        return valid;
+        return cellList.size() == new HashSet<>(cellList).size();
     }
 
     boolean isSolved() {
         boolean solved = true;
         for (int i = 0; i < GRID_SIZE; i++) {
             for (int j = 0; j < GRID_SIZE; j++) {
-                if (cellGrid_[i][j].getSymbol() == null) {
+                if (getCell(i, j).isCellEmpty()) {
                     solved = false;
                     break;
                 }
             }
         }
         return solved;
-    }
-
-    Cell[][] getCellGrid() {
-        return cellGrid_;
     }
 
     List<Cell> getRowCells(int i) {
@@ -95,7 +111,7 @@ class SudokuGrid {
     List<Cell> getColCells(int j) {
         Cell[] col = new Cell[GRID_SIZE];
         for (int i = 0; i < GRID_SIZE; i++) {
-            col[i] = cellGrid_[i][j];
+            col[i] = getCell(i, j);
         }
         return new ArrayList<>(Arrays.asList(col));
     }
@@ -117,7 +133,7 @@ class SudokuGrid {
         List<Cell> groupCells = new ArrayList<>();
         for (int i = rowMin; i <= rowMax; i++) {
             for (int j = colMin; j <= colMax; j++) {
-                groupCells.add(cellGrid_[i][j]);
+                groupCells.add(getCell(i, j));
             }
         }
         return groupCells;
@@ -128,12 +144,9 @@ class SudokuGrid {
     }
 
     private List<Cell> getSolvedCells(List<Cell> allCells) {
-        List<Cell> cellList = new ArrayList<>();
-        for (Cell cell : allCells) {
-            if (cell.getSymbol() != null) {
-                cellList.add(cell);
-            }
-        }
-        return cellList;
+        List<Cell> nullCellList = new ArrayList<>();
+        nullCellList.add(new Cell());
+        allCells.removeAll(nullCellList);
+        return allCells;
     }
 }

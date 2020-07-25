@@ -28,54 +28,54 @@ public class SudokuGridTest {
     @Before
     public void init() {
         int[][] validGrid = {
-                {0,0,0,2,6,0,7,0,1},
-                {6,8,0,0,7,0,0,9,0},
-                {1,9,0,0,0,4,5,0,0},
-                {8,2,0,1,0,0,0,4,0},
-                {0,0,4,6,0,2,9,0,0},
-                {0,5,0,0,0,3,0,2,8},
-                {0,0,9,3,0,0,0,7,4},
-                {0,4,0,0,5,0,0,3,6},
-                {7,0,3,0,1,8,0,0,0}
+                {0, 0, 0, 2, 6, 0, 7, 0, 1},
+                {6, 8, 0, 0, 7, 0, 0, 9, 0},
+                {1, 9, 0, 0, 0, 4, 5, 0, 0},
+                {8, 2, 0, 1, 0, 0, 0, 4, 0},
+                {0, 0, 4, 6, 0, 2, 9, 0, 0},
+                {0, 5, 0, 0, 0, 3, 0, 2, 8},
+                {0, 0, 9, 3, 0, 0, 0, 7, 4},
+                {0, 4, 0, 0, 5, 0, 0, 3, 6},
+                {7, 0, 3, 0, 1, 8, 0, 0, 0}
         };
         sudokuGrid_ = new SudokuGrid(validGrid);
 
         int[][] invalidGridRow = {
-                {0,0,2,2,6,0,7,0,1},
-                {6,8,0,0,7,0,0,9,0},
-                {1,9,0,0,0,4,5,0,0},
-                {8,2,0,1,0,0,0,4,0},
-                {0,0,4,6,0,2,9,0,0},
-                {0,5,0,0,0,3,0,2,8},
-                {0,0,9,3,0,0,0,7,4},
-                {0,4,0,0,5,0,0,3,6},
-                {7,0,3,0,1,8,0,0,0}
+                {0, 0, 2, 2, 6, 0, 7, 0, 1},
+                {6, 8, 0, 0, 7, 0, 0, 9, 0},
+                {1, 9, 0, 0, 0, 4, 5, 0, 0},
+                {8, 2, 0, 1, 0, 0, 0, 4, 0},
+                {0, 0, 4, 6, 0, 2, 9, 0, 0},
+                {0, 5, 0, 0, 0, 3, 0, 2, 8},
+                {0, 0, 9, 3, 0, 0, 0, 7, 4},
+                {0, 4, 0, 0, 5, 0, 0, 3, 6},
+                {7, 0, 3, 0, 1, 8, 0, 0, 0}
         };
         invalidSudokuGridRow_ = new SudokuGrid(invalidGridRow);
 
         int[][] invalidGridCol = {
-                {0,0,0,2,6,0,7,0,1},
-                {6,8,0,0,7,0,0,9,0},
-                {1,9,0,0,0,4,5,0,0},
-                {8,2,0,1,0,0,0,4,0},
-                {0,0,4,6,0,2,9,0,0},
-                {0,5,0,0,0,3,0,2,8},
-                {8,0,9,3,0,0,0,7,4},
-                {0,4,0,0,5,0,0,3,6},
-                {7,0,3,0,1,8,0,0,0}
+                {0, 0, 0, 2, 6, 0, 7, 0, 1},
+                {6, 8, 0, 0, 7, 0, 0, 9, 0},
+                {1, 9, 0, 0, 0, 4, 5, 0, 0},
+                {8, 2, 0, 1, 0, 0, 0, 4, 0},
+                {0, 0, 4, 6, 0, 2, 9, 0, 0},
+                {0, 5, 0, 0, 0, 3, 0, 2, 8},
+                {8, 0, 9, 3, 0, 0, 0, 7, 4},
+                {0, 4, 0, 0, 5, 0, 0, 3, 6},
+                {7, 0, 3, 0, 1, 8, 0, 0, 0}
         };
         invalidSudokuGridCol_ = new SudokuGrid(invalidGridCol);
 
         int[][] invalidGridGroup = {
-                {0,0,0,2,6,0,7,0,1},
-                {6,8,0,0,7,0,0,9,0},
-                {1,9,0,0,0,4,5,0,0},
-                {8,2,0,1,0,0,0,4,0},
-                {0,0,4,6,0,2,9,0,0},
-                {0,5,0,0,0,3,0,2,8},
-                {0,0,9,3,0,0,6,7,4},
-                {0,4,0,0,5,0,0,3,6},
-                {7,0,3,0,1,8,0,0,0}
+                {0, 0, 0, 2, 6, 0, 7, 0, 1},
+                {6, 8, 0, 0, 7, 0, 0, 9, 0},
+                {1, 9, 0, 0, 0, 4, 5, 0, 0},
+                {8, 2, 0, 1, 0, 0, 0, 4, 0},
+                {0, 0, 4, 6, 0, 2, 9, 0, 0},
+                {0, 5, 0, 0, 0, 3, 0, 2, 8},
+                {0, 0, 9, 3, 0, 0, 6, 7, 4},
+                {0, 4, 0, 0, 5, 0, 0, 3, 6},
+                {7, 0, 3, 0, 1, 8, 0, 0, 0}
         };
         invalidSudokuGridGroup_ = new SudokuGrid(invalidGridGroup);
     }
@@ -91,18 +91,33 @@ public class SudokuGridTest {
     }
 
     @Test
-    public void gridIsNotValidRow() {
-        Assert.assertFalse("Sudoku Row Grid is Valid", invalidSudokuGridRow_.isValid());
+    public void gridIsNotValidAllRows() {
+        Assert.assertFalse("Sudoku Grid is Valid for All Rows check", invalidSudokuGridRow_.isValid());
     }
 
     @Test
-    public void gridIsNotValidCol() {
-        Assert.assertFalse("Sudoku Col Grid is Valid", invalidSudokuGridCol_.isValid());
+    public void gridIsNotValidOneRow() {
+        Assert.assertFalse("Sudoku Row Grid is Valid for One Row check", invalidSudokuGridRow_.isValid(0, 0));
     }
 
     @Test
-    public void gridIsNotValidGroup() {
-        Assert.assertFalse("Sudoku Group Grid is Valid", invalidSudokuGridGroup_.isValid());
+    public void gridIsNotValidAllCols() {
+        Assert.assertFalse("Sudoku Col Grid is Valid for All Cols check", invalidSudokuGridCol_.isValid());
+    }
+
+    @Test
+    public void gridIsNotValidOneCol() {
+        Assert.assertFalse("Sudoku Col Grid is Valid for One Col check", invalidSudokuGridCol_.isValid(0, 0));
+    }
+
+    @Test
+    public void gridIsNotValidAllGroups() {
+        Assert.assertFalse("Sudoku Group Grid is Valid for All Groups check", invalidSudokuGridGroup_.isValid());
+    }
+
+    @Test
+    public void gridIsNotValidOneGroup() {
+        Assert.assertFalse("Sudoku Group Grid is Valid for One Group check", invalidSudokuGridGroup_.isValid(7, 7));
     }
 
     @Test
@@ -251,7 +266,7 @@ public class SudokuGridTest {
 
     @Test
     public void testGetGroupG() {
-        List<Cell> groupG= sudokuGrid_.getGroupCells(6, 0);
+        List<Cell> groupG = sudokuGrid_.getGroupCells(6, 0);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
         groupG = sudokuGrid_.getGroupCells(6, 1);
         Assert.assertEquals("incorrect group G", groupG, GROUP_G);
@@ -273,45 +288,45 @@ public class SudokuGridTest {
 
     @Test
     public void testGetGroupH() {
-        List<Cell> groupH= sudokuGrid_.getGroupCells(6, 3);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        List<Cell> groupH = sudokuGrid_.getGroupCells(6, 3);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(6, 4);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(6, 5);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(7, 3);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(7, 4);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(7, 5);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(8, 3);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(8, 4);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
         groupH = sudokuGrid_.getGroupCells(8, 5);
-        Assert.assertEquals("incorrect group G", groupH, GROUP_H);
+        Assert.assertEquals("incorrect group H", groupH, GROUP_H);
     }
 
     @Test
     public void testGetGroupI() {
-        List<Cell> groupI= sudokuGrid_.getGroupCells(6, 6);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        List<Cell> groupI = sudokuGrid_.getGroupCells(6, 6);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(6, 7);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(6, 8);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(7, 6);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(7, 7);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(7, 8);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(8, 6);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(8, 7);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
         groupI = sudokuGrid_.getGroupCells(8, 8);
-        Assert.assertEquals("incorrect group G", groupI, GROUP_I);
+        Assert.assertEquals("incorrect group I", groupI, GROUP_I);
     }
 }
