@@ -6,19 +6,17 @@ import java.util.*;
  * @author nevillebradshaw@hotmail.com
  * <p>
  * This class represents the Grid of Cells
- * It provides methods to indicate if the Grid has been resolved
- * There are 9 3x3 groups in the grid referred to as GroupA, GroupB...GroupI.
- * These are the 3x3 arrays listed from top left of the grid to bottom right.
+ * It provides methods to indicate if the Grid has been solved and if it isValid
+ * i.e. current cell values conform to the rules of sudoku.
  */
 class SudokuGrid {
-    public static int GRID_WIDTH = 9;
-    public static int GRID_HEIGHT = 9;
+    static int GRID_SIZE = 9;
 
-    private Cell[][] cellGrid_ = new Cell[GRID_WIDTH][GRID_HEIGHT];
+    private Cell[][] cellGrid_ = new Cell[GRID_SIZE][GRID_SIZE];
 
     SudokuGrid(int[][] grid) {
-        for (int i = 0; i < GRID_WIDTH; i++) {
-            for (int j = 0; j < GRID_HEIGHT; j++) {
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
                 cellGrid_[i][j] = new Cell(grid[i][j]);
             }
         }
@@ -26,7 +24,7 @@ class SudokuGrid {
 
     boolean isValid() {
         boolean isVal = true;
-        for (int i = 0; i < GRID_WIDTH; i++) {
+        for (int i = 0; i < GRID_SIZE; i++) {
             List<Cell> rowList = getSolvedRowCells(i);
             if (!isCellListValid(rowList)) {
                 isVal = false;
@@ -35,7 +33,7 @@ class SudokuGrid {
         }
 
         if (isVal) {
-            for (int j = 0; j < GRID_HEIGHT; j++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
                 List<Cell> colList = getSolvedColCells(j);
                 if (!isCellListValid(colList)) {
                     isVal = false;
@@ -45,9 +43,9 @@ class SudokuGrid {
         }
 
         if (isVal) {
-            //TODO only get each group once
-            for (int i = 0; i < GRID_WIDTH; i++) {
-                for (int j = 0; j < GRID_HEIGHT; j++) {
+            int[] idx = {0, 3, 6};
+            for (int i : idx) {
+                for (int j : idx) {
                     List<Cell> groupList = getSolvedGroupCells(i, j);
                     if (!isCellListValid(groupList)) {
                         isVal = false;
@@ -71,8 +69,8 @@ class SudokuGrid {
 
     boolean isSolved() {
         boolean solved = true;
-        for (int i = 0; i < GRID_WIDTH; i++) {
-            for (int j = 0; j < GRID_HEIGHT; j++) {
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
                 if (cellGrid_[i][j].getSymbol() == null) {
                     solved = false;
                     break;
@@ -95,8 +93,8 @@ class SudokuGrid {
     }
 
     List<Cell> getColCells(int j) {
-        Cell[] col = new Cell[GRID_HEIGHT];
-        for (int i = 0; i < GRID_HEIGHT; i++) {
+        Cell[] col = new Cell[GRID_SIZE];
+        for (int i = 0; i < GRID_SIZE; i++) {
             col[i] = cellGrid_[i][j];
         }
         return new ArrayList<>(Arrays.asList(col));
@@ -107,44 +105,12 @@ class SudokuGrid {
     }
 
     List<Cell> getGroupCells(int row, int col) {
-        List<Cell> groupCellsList = new ArrayList<>();
-        // Group A
-        if (row >= 0 && row <= 2 && col >= 0 && col <= 2) {
-            groupCellsList = getGroup(0, 2, 0, 2);
-        }
-        // Group B
-        else if (row >= 0 && row <= 2 && col >= 3 && col <= 5) {
-            groupCellsList = getGroup(0, 2, 3, 5);
-        }
-        // Group C
-        else if (row >= 0 && row <= 2 && col >= 6 && col <= 8) {
-            groupCellsList = getGroup(0, 2, 6, 8);
-        }
-        // Group D
-        else if (row >= 3 && row <= 5 && col >= 0 && col <= 2) {
-            groupCellsList = getGroup(3, 5, 0, 2);
-        }
-        // Group E
-        else if (row >= 3 && row <= 5 && col >= 3 && col <= 5) {
-            groupCellsList = getGroup(3, 5, 3, 5);
-        }
-        // Group F
-        else if (row >= 3 && row <= 5 && col >= 6 && col <= 8) {
-            groupCellsList = getGroup(3, 5, 6, 8);
-        }
-        // Group G
-        else if (row >= 6 && row <= 8 && col >= 0 && col <= 2) {
-            groupCellsList = getGroup(6, 8, 0, 2);
-        }
-        // Group H
-        else if (row >= 6 && row <= 8 && col >= 3 && col <= 5) {
-            groupCellsList = getGroup(6, 8, 3, 5);
-        }
-        // Group I
-        else if (row >= 6 && row <= 8 && col >= 6 && col <= 8) {
-            groupCellsList = getGroup(6, 8, 6, 8);
-        }
-        return groupCellsList;
+        int rowMin = row - row % 3;
+        int rowMax = rowMin + 2;
+        int colMin = col - col % 3;
+        int colMax = colMin + 2;
+
+        return getGroup(rowMin, rowMax, colMin, colMax);
     }
 
     private List<Cell> getGroup(int rowMin, int rowMax, int colMin, int colMax) {

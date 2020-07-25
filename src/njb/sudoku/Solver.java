@@ -7,7 +7,7 @@ package njb.sudoku;
  */
 public class Solver {
     private SudokuGrid sudokuGrid_;
-    private int[][] solution = new int[SudokuGrid.GRID_WIDTH][SudokuGrid.GRID_HEIGHT];
+    private int[][] solution = new int[SudokuGrid.GRID_SIZE][SudokuGrid.GRID_SIZE];
 
     /**
      * @param grid A 9x9 integer array specifying the sudoku grid.
@@ -21,8 +21,8 @@ public class Solver {
         if (sudokuGrid_.isSolved()) {
             System.out.println("Solution");
             System.out.println("-----------------");
-            for (int i = 0; i < SudokuGrid.GRID_WIDTH; i++) {
-                for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
+            for (int i = 0; i < SudokuGrid.GRID_SIZE; i++) {
+                for (int j = 0; j < SudokuGrid.GRID_SIZE; j++) {
                     Cell currentCell = sudokuGrid_.getCellGrid()[i][j];
                     solution[i][j] = currentCell.getSymbol().getValue();
                     System.out.print(currentCell.getSymbol() + " ");
@@ -36,8 +36,8 @@ public class Solver {
     }
 
     boolean solve() {
-        for (int i = 0; i < SudokuGrid.GRID_WIDTH; i++) {
-            for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
+        for (int i = 0; i < SudokuGrid.GRID_SIZE; i++) {
+            for (int j = 0; j < SudokuGrid.GRID_SIZE; j++) {
                 if (sudokuGrid_.getCellGrid()[i][j].getSymbol() == null) {
                     for (Symbol symbol : Symbol.values()) {
                         sudokuGrid_.getCellGrid()[i][j] = new Cell(symbol);
