@@ -7,7 +7,6 @@ import java.util.*;
  * <p>
  * This class represents the Grid of Cells
  * It provides methods to indicate if the Grid has been resolved
- * as well as the helper methods to List the nine values in a row,column or 3x3 group.
  * There are 9 3x3 groups in the grid referred to as GroupA, GroupB...GroupI.
  * These are the 3x3 arrays listed from top left of the grid to bottom right.
  */

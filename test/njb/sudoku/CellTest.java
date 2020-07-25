@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.util.*;
 
 public class CellTest {
-    private static List<Symbol> ALL_SYMBOLS = new ArrayList<>(Arrays.asList(Symbol.values()));
     private static List<Cell> ALL_CELLS = Arrays.asList(new Cell(1), new Cell(2), new Cell(3), new Cell(4), new Cell(5), new Cell(6), new Cell(7), new Cell(8), new Cell(9));
     private static List<Cell> RANDOM_CELLS = Arrays.asList(new Cell(8), new Cell(2), new Cell(3), new Cell(6), new Cell(1), new Cell(4), new Cell(7), new Cell(9), new Cell(5));
 
@@ -20,7 +19,7 @@ public class CellTest {
     @Test
     public void checkCellCorrectEmptyValue() {
         Cell cell = new Cell(0);
-        Assert.assertTrue("cell initialised with 0 should have a null Symbol", cell.getSymbol() == null);
+        Assert.assertNull("cell initialised with 0 should have a null Symbol", cell.getSymbol());
     }
 
     @Test
