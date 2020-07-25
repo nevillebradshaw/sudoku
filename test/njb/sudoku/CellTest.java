@@ -20,7 +20,7 @@ public class CellTest {
     @Test
     public void checkCellCorrectEmptyValue() {
         Cell cell = new Cell(0);
-        Assert.assertTrue("cell initialised with 0 should have a null Symbol", cell.getSymbol() == null && ALL_SYMBOLS.equals(cell.getPossibleSymbols()));
+        Assert.assertTrue("cell initialised with 0 should have a null Symbol", cell.getSymbol() == null);
     }
 
     @Test

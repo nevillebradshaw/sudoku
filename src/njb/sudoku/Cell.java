@@ -19,22 +19,18 @@ import java.util.Objects;
 class Cell implements Comparable<Cell>{
     private static List<Symbol> ALL_SYMBOLS = new ArrayList<>(Arrays.asList(Symbol.values()));
     private Symbol symbol_;
-    private List<Symbol> possibleSymbols_;
 
     Cell() {
         symbol_ = null;
-        possibleSymbols_ = new ArrayList<>(ALL_SYMBOLS);
     }
 
     Cell(Symbol symbol) {
         symbol_ = symbol;
-        possibleSymbols_ = null;
     }
 
     Cell(int value) {
         symbol_ = switch (value) {
             case 0 -> {
-                possibleSymbols_ = new ArrayList<>(ALL_SYMBOLS);
                 yield null;
             }
             case 1 -> Symbol.ONE;
@@ -54,44 +50,22 @@ class Cell implements Comparable<Cell>{
         return symbol_;
     }
 
-    List<Symbol> getPossibleSymbols() {
-        return possibleSymbols_;
-    }
-
-    boolean removeFromPossibleSymbols(List<Cell> otherCellsList) {
-        boolean cellChanged = false;
-        if (symbol_ == null) {
-            List<Symbol> removeList = new ArrayList<>();
-            for (Cell cell : otherCellsList) {
-                if (cell.getSymbol() != null) {
-                    removeList.add(cell.getSymbol());
-                }
-            }
-            cellChanged = possibleSymbols_.removeAll(removeList);
-            if (possibleSymbols_.size() == 1) {
-                symbol_ = possibleSymbols_.get(0);
-                possibleSymbols_ = null;
-            }
-        }
-        return cellChanged;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cell cell = (Cell) o;
-        return symbol_ == cell.symbol_ && Objects.equals(possibleSymbols_, cell.possibleSymbols_);
+        return symbol_ == cell.symbol_;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(symbol_, possibleSymbols_);
+        return Objects.hash(symbol_);
     }
 
     @Override
     public String toString() {
-        return "Cell{symbol_=" + symbol_ + ", possibleSymbols_=" + possibleSymbols_ + '}';
+        return "Cell{symbol_=" + symbol_ + ", possibleSymbols_=" + '}';
     }
 
     @Override

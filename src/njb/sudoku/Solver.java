@@ -6,9 +6,8 @@ package njb.sudoku;
  * This Solver attempts to find the Sudoku solution to the grid passed in to the constructor.
  */
 public class Solver {
-    private static int MAX_ITERATIONS = 20;
+    private SudokuGrid sudokuGrid_;
     private int[][] solution = new int[SudokuGrid.GRID_WIDTH][SudokuGrid.GRID_HEIGHT];
-    SudokuGrid sudokuGrid_;
 
     /**
      * @param grid A 9x9 integer array specifying the sudoku grid.
@@ -39,8 +38,7 @@ public class Solver {
     boolean solve() {
         for (int i = 0; i < SudokuGrid.GRID_WIDTH; i++) {
             for (int j = 0; j < SudokuGrid.GRID_HEIGHT; j++) {
-                Cell currentCell = sudokuGrid_.getCellGrid()[i][j];
-                if (currentCell.getSymbol() == null) {
+                if (sudokuGrid_.getCellGrid()[i][j].getSymbol() == null) {
                     for (Symbol symbol : Symbol.values()) {
                         sudokuGrid_.getCellGrid()[i][j] = new Cell(symbol);
                         if (sudokuGrid_.isValid()) {
