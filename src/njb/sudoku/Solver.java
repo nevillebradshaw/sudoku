@@ -6,8 +6,8 @@ package njb.sudoku;
  * This Solver attempts to find the solution to the Sudoku grid passed in to the constructor.
  */
 public class Solver {
-    private SudokuGrid sudokuGrid_;
-    private int[][] solution = new int[SudokuGrid.GRID_SIZE][SudokuGrid.GRID_SIZE];
+    private final SudokuGrid sudokuGrid_;
+    private final int[][] solution = new int[SudokuGrid.GRID_SIZE][SudokuGrid.GRID_SIZE];
 
     /**
      * @param grid A 9x9 integer array specifying the sudoku grid.

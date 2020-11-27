@@ -8,17 +8,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SudokuGridTest {
-    private static List<Cell> ROW_ZERO = Arrays.asList(new Cell(0), new Cell(0), new Cell(0), new Cell(2), new Cell(6), new Cell(0), new Cell(7), new Cell(0), new Cell(1));
-    private static List<Cell> COL_EIGHT = Arrays.asList(new Cell(1), new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(8), new Cell(4), new Cell(6), new Cell(0));
-    private static List<Cell> GROUP_A = Arrays.asList(new Cell(0), new Cell(0), new Cell(0), new Cell(6), new Cell(8), new Cell(0), new Cell(1), new Cell(9), new Cell(0));
-    private static List<Cell> GROUP_B = Arrays.asList(new Cell(2), new Cell(6), new Cell(0), new Cell(0), new Cell(7), new Cell(0), new Cell(0), new Cell(0), new Cell(4));
-    private static List<Cell> GROUP_C = Arrays.asList(new Cell(7), new Cell(0), new Cell(1), new Cell(0), new Cell(9), new Cell(0), new Cell(5), new Cell(0), new Cell(0));
-    private static List<Cell> GROUP_D = Arrays.asList(new Cell(8), new Cell(2), new Cell(0), new Cell(0), new Cell(0), new Cell(4), new Cell(0), new Cell(5), new Cell(0));
-    private static List<Cell> GROUP_E = Arrays.asList(new Cell(1), new Cell(0), new Cell(0), new Cell(6), new Cell(0), new Cell(2), new Cell(0), new Cell(0), new Cell(3));
-    private static List<Cell> GROUP_F = Arrays.asList(new Cell(0), new Cell(4), new Cell(0), new Cell(9), new Cell(0), new Cell(0), new Cell(0), new Cell(2), new Cell(8));
-    private static List<Cell> GROUP_G = Arrays.asList(new Cell(0), new Cell(0), new Cell(9), new Cell(0), new Cell(4), new Cell(0), new Cell(7), new Cell(0), new Cell(3));
-    private static List<Cell> GROUP_H = Arrays.asList(new Cell(3), new Cell(0), new Cell(0), new Cell(0), new Cell(5), new Cell(0), new Cell(0), new Cell(1), new Cell(8));
-    private static List<Cell> GROUP_I = Arrays.asList(new Cell(0), new Cell(7), new Cell(4), new Cell(0), new Cell(3), new Cell(6), new Cell(0), new Cell(0), new Cell(0));
+    private static final List<Cell> ROW_ZERO = Arrays.asList(new Cell(0), new Cell(0), new Cell(0), new Cell(2), new Cell(6), new Cell(0), new Cell(7), new Cell(0), new Cell(1));
+    private static final List<Cell> COL_EIGHT = Arrays.asList(new Cell(1), new Cell(0), new Cell(0), new Cell(0), new Cell(0), new Cell(8), new Cell(4), new Cell(6), new Cell(0));
+    private static final List<Cell> GROUP_A = Arrays.asList(new Cell(0), new Cell(0), new Cell(0), new Cell(6), new Cell(8), new Cell(0), new Cell(1), new Cell(9), new Cell(0));
+    private static final List<Cell> GROUP_B = Arrays.asList(new Cell(2), new Cell(6), new Cell(0), new Cell(0), new Cell(7), new Cell(0), new Cell(0), new Cell(0), new Cell(4));
+    private static final List<Cell> GROUP_C = Arrays.asList(new Cell(7), new Cell(0), new Cell(1), new Cell(0), new Cell(9), new Cell(0), new Cell(5), new Cell(0), new Cell(0));
+    private static final List<Cell> GROUP_D = Arrays.asList(new Cell(8), new Cell(2), new Cell(0), new Cell(0), new Cell(0), new Cell(4), new Cell(0), new Cell(5), new Cell(0));
+    private static final List<Cell> GROUP_E = Arrays.asList(new Cell(1), new Cell(0), new Cell(0), new Cell(6), new Cell(0), new Cell(2), new Cell(0), new Cell(0), new Cell(3));
+    private static final List<Cell> GROUP_F = Arrays.asList(new Cell(0), new Cell(4), new Cell(0), new Cell(9), new Cell(0), new Cell(0), new Cell(0), new Cell(2), new Cell(8));
+    private static final List<Cell> GROUP_G = Arrays.asList(new Cell(0), new Cell(0), new Cell(9), new Cell(0), new Cell(4), new Cell(0), new Cell(7), new Cell(0), new Cell(3));
+    private static final List<Cell> GROUP_H = Arrays.asList(new Cell(3), new Cell(0), new Cell(0), new Cell(0), new Cell(5), new Cell(0), new Cell(0), new Cell(1), new Cell(8));
+    private static final List<Cell> GROUP_I = Arrays.asList(new Cell(0), new Cell(7), new Cell(4), new Cell(0), new Cell(3), new Cell(6), new Cell(0), new Cell(0), new Cell(0));
 
     private SudokuGrid sudokuGrid_;
     private SudokuGrid invalidSudokuGridRow_;

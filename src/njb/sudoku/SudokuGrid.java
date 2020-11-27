@@ -13,9 +13,9 @@ import java.util.List;
  * i.e. that the current cell values conform to the rules of sudoku.
  */
 class SudokuGrid {
-    static int GRID_SIZE = 9;
+    static final int GRID_SIZE = 9;
 
-    private Cell[][] cellGrid_ = new Cell[GRID_SIZE][GRID_SIZE];
+    private final Cell[][] cellGrid_ = new Cell[GRID_SIZE][GRID_SIZE];
 
     SudokuGrid(int[][] grid) {
         for (int i = 0; i < GRID_SIZE; i++) {
@@ -35,18 +35,18 @@ class SudokuGrid {
 
     boolean isValid(int i, int j) {
         boolean isVal = true;
-        if (!isCellListValid(getSolvedRowCells(i))) {
+        if (isCellListNotValid(getSolvedRowCells(i))) {
             isVal = false;
         }
 
         if (isVal) {
-            if (!isCellListValid(getSolvedColCells(j))) {
+            if (isCellListNotValid(getSolvedColCells(j))) {
                 isVal = false;
             }
         }
 
         if (isVal) {
-            if (!isCellListValid(getSolvedGroupCells(i, j))) {
+            if (isCellListNotValid(getSolvedGroupCells(i, j))) {
                 isVal = false;
             }
         }
@@ -56,7 +56,7 @@ class SudokuGrid {
     boolean isValid() {
         boolean isVal = true;
         for (int i = 0; i < GRID_SIZE; i++) {
-            if (!isCellListValid(getSolvedRowCells(i))) {
+            if (isCellListNotValid(getSolvedRowCells(i))) {
                 isVal = false;
                 break;
             }
@@ -64,7 +64,7 @@ class SudokuGrid {
 
         if (isVal) {
             for (int j = 0; j < GRID_SIZE; j++) {
-                if (!isCellListValid(getSolvedColCells(j))) {
+                if (isCellListNotValid(getSolvedColCells(j))) {
                     isVal = false;
                     break;
                 }
@@ -75,7 +75,7 @@ class SudokuGrid {
             int[] idx = {0, 3, 6};
             for (int i : idx) {
                 for (int j : idx) {
-                    if (!isCellListValid(getSolvedGroupCells(i, j))) {
+                    if (isCellListNotValid(getSolvedGroupCells(i, j))) {
                         isVal = false;
                         break;
                     }
@@ -86,8 +86,8 @@ class SudokuGrid {
         return isVal;
     }
 
-    private boolean isCellListValid(List<Cell> cellList) {
-        return cellList.size() == new HashSet<>(cellList).size();
+    private boolean isCellListNotValid(List<Cell> cellList) {
+        return cellList.size() != new HashSet<>(cellList).size();
     }
 
     boolean isSolved() {

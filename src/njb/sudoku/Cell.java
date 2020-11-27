@@ -9,7 +9,7 @@ import java.util.Objects;
  * A Cell that is currently not resolved has symbol == null.
  */
 class Cell implements Comparable<Cell> {
-    private Symbol symbol_;
+    private final Symbol symbol_;
 
     Cell() {
         symbol_ = null;
@@ -36,7 +36,7 @@ class Cell implements Comparable<Cell> {
     }
 
     int getValue() {
-        return symbol_.getValue();
+        return Objects.requireNonNull(symbol_).getValue();
     }
 
     boolean isCellEmpty() {
@@ -58,12 +58,12 @@ class Cell implements Comparable<Cell> {
 
     @Override
     public String toString() {
-        return symbol_.toString();
+        return Objects.requireNonNull(symbol_).toString();
     }
 
     @Override
     public int compareTo(Cell otherCell) {
-        int thisVal = symbol_.getValue();
+        int thisVal = Objects.requireNonNull(symbol_).getValue();
         int thatVal = otherCell.symbol_ == null ? 0 : otherCell.symbol_.getValue();
         int ret = 1;
         if (thisVal < thatVal) {
